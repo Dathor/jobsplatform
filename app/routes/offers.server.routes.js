@@ -11,4 +11,5 @@ module.exports = function(app) {
 	app.route('/offers::token').get(offers.read);
 	app.route('/offers/update:token').put(offers.update);
 	app.route('/offers/search').get(offers.all);
+	app.route('/offer/details/:token').get(offers.offerDetails);
 };

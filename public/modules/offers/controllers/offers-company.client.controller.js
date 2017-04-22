@@ -18,7 +18,8 @@ angular.module('offers').controller('OffersCompanyController', ['$scope', '$http
 			});
 		};
 
-		$scope.offers = $http.get('/offers/index/' + $scope.authentication.user._id).success(function(response){
+		$scope.offers = [];
+		$http.get('/offers/index/' + $scope.authentication.user._id).success(function(response){
 			$scope.offers = response;
 		}).error(function(response){
 			console.log(response.message);

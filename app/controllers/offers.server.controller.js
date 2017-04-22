@@ -111,7 +111,7 @@ exports.list = function(req, res) {
 };
 
 /**
- * Get all offers
+ * Get all offers and the name and logo of the company which posted them
  */
 exports.all = function(req, res){
     Offer.find({}).populate('company', 'companyUser.companyName image').exec(function(err,offers){
@@ -123,4 +123,20 @@ exports.all = function(req, res){
             res.send(offers);
         }
     });
+};
+
+/**
+ * Get an offer for detailed reading
+ */
+
+exports.offerDetails = function(req, res){
+    Offer.findById(req.params.token).populate('company', 'companyUser image').exec(function(err, offer){
+        if(err){
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else{
+            res.send(offer);
+        }
+    })
 };

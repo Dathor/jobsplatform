@@ -19,6 +19,9 @@ angular.module('offers').controller('OffersUserController', ['$scope', '$http', 
 			$scope.reverse = !$scope.reverse;
 		}; 
 
+		$scope.offerDetails = function(offer){
+			$location.path('/user/offer/' + offer._id);
+		};
 		
 	}
 ]);

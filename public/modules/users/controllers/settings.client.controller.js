@@ -13,15 +13,27 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			var url = URL.createObjectURL(file);
 			Jimp.read(url)
 			.then(function (item) {
-				item.resize(28, Jimp.AUTO)
-				.getBase64(file.type, function (err, newBase64) {
-					if (err) {throw err;}
-					var bytes = Math.round((3/4)*newBase64.length);
-					base64Object.filetype = file.type;
-					base64Object.filesize = bytes;
-					base64Object.base64 = newBase64;
-					deferred.resolve(base64Object);
-				});
+				if($scope.user.roles[0]==='company'){
+					item.resize(28, Jimp.AUTO)
+					.getBase64(file.type, function (err, newBase64) {
+						if (err) {throw err;}
+						var bytes = Math.round((3/4)*newBase64.length);
+						base64Object.filetype = file.type;
+						base64Object.filesize = bytes;
+						base64Object.base64 = newBase64;
+						deferred.resolve(base64Object);
+					});
+				} else{
+					item.resize(133, Jimp.AUTO)
+					.getBase64(file.type, function (err, newBase64) {
+						if (err) {throw err;}
+						var bytes = Math.round((3/4)*newBase64.length);
+						base64Object.filetype = file.type;
+						base64Object.filesize = bytes;
+						base64Object.base64 = newBase64;
+						deferred.resolve(base64Object);
+					});
+				}
 			})
 			.catch(function (err) {
 				return console.log(err);

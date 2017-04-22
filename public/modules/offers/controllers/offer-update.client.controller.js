@@ -7,7 +7,8 @@ angular.module('offers').controller('OfferUpdateController', ['$scope', '$http',
 
 		if(!$scope.authentication.user || $scope.authentication.user.roles[0]!=='company') $location.path('/');
 
-		$scope.offer = $http.get('/offers:' + $stateParams.token).success(function(response){
+		$scope.offer = {};
+		$http.get('/offers:' + $stateParams.token).success(function(response){
 			$scope.offer = response;
 		}).error(function(response){
 			console.log(response.message);
