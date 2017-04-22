@@ -1,0 +1,45 @@
+<section data-ng-controller="HomeController">
+	<div class="jumbotron text-center" data-ng-hide="authentication.user">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<p class="lead">
+				Welcome to the Jobs Platform. Here you can start searching for a new job or make job offers as a company.
+			</p>
+		</div>
+		<div class="row">
+			<p>
+				<a class="btn btn-primary btn-lg" href="./#!/signup">Sign Up</a>
+			</p>
+		</div>
+	</div>
+	<div class="jumbotron text-center" data-ng-show="authentication.user.roles[0]==='company'">
+		<br>
+		<div class="row">
+			<p class="lead">
+				Welcome to the Jobs Platform. Here you can start making job offers as a company.
+			</p>
+		</div>
+		<div class="row">
+			<p>
+				<a class="btn btn-primary btn-lg" href="./#!/company/createOffer">Create a new offer</a>
+			</p>
+		</div>
+	</div>
+	<div class="jumbotron text-center" data-ng-show="authentication.user.roles[0]==='user'">
+		<br>
+		<div class="row">
+			<p class="lead">
+				Welcome to the Jobs Platform. Here you can start searching for a new job.
+			</p>
+		</div>
+		<div class="row">
+			<p>
+				<a class="btn btn-primary btn-lg" href="./#!/user/search">Find an offer</a>
+			</p>
+		</div>
+	</div>
+</section>

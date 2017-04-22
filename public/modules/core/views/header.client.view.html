@@ -1,0 +1,65 @@
+<div class="container" data-ng-controller="HeaderController">
+	<div class="navbar-header">
+		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a href="/#!/" class="navbar-brand">JobsPlatform</a>
+	</div>
+	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+		<ul class="nav navbar-nav" data-ng-show="authentication.user.roles[0]==='company'">
+			<li ui-route="/offers" ng-class="{active :$uiRoute}">
+				<a href="/#!/offers">Your offers</a>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav" data-ng-show="authentication.user.roles[0]==='user'">
+			<li ui-route="/user/search" ng-class="{active :$uiRoute}">
+				<a href="/#!/user/search">Search offers</a>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+			<li ui-route="/signup" ng-class="{active: $uiRoute}">
+				<a href="/#!/signup">Sign Up</a>
+			</li>
+			<li class="divider-vertical"></li>
+			<li ui-route="/signin" ng-class="{active: $uiRoute}">
+				<a href="/#!/signin">Sign In</a>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span data-ng-show="authentication.user.roles[0]==='company'"><img data-ng-show="authentication.user.image" src="{{authentication.user.image}}" style="padding-right:5px"><span data-ng-bind="authentication.user.companyUser.companyName"></span></span>
+					<span data-ng-show="authentication.user.roles[0]==='user'" data-ng-bind="authentication.user.displayName"></span>
+					 <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="/#!/settings/profile">Edit Personal Info</a>
+					</li>
+					<li data-ng-show="authentication.user.roles[0]==='company'">
+						<a href="/#!/settings/profile/logo">Add a logo</a>
+					</li>
+					<li data-ng-show="authentication.user.roles[0]==='user'">
+						<a href="/#!/settings/profile/logo">Add a photo</a>
+					</li>
+					<li data-ng-show="authentication.user.image">
+						<a ng-click="deleteImage()">Delete your photo</a>
+					</li>
+					<li data-ng-show="authentication.user.roles[0]==='company'">
+						<a href="/#!/settings/profile/company">Edit Company Info</a>
+					</li>
+					<li data-ng-show="authentication.user.provider === 'local'">
+						<a href="/#!/settings/password">Change Password</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="/auth/signout">Signout</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</div>

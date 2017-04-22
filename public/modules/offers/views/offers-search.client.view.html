@@ -1,0 +1,38 @@
+<section data-ng-controller="OffersUserController">
+	<form class="form-inline">
+		<div class="form-group col-md-offset-5">
+			<label for="search">Search</label>
+			<input type="text" id="search" data-ng-model="search" class="form-control" placeholder="Search"> 
+		</div>
+	</form>
+	<br>
+	<table class="table wrap table-fixed">
+		<tr>
+			<th data-ng-click="sort('company')">Company
+				<span class="glyphicon sort-icon" ng-show="sortKey=='company'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th data-ng-click="sort('position')">Position
+				<span class="glyphicon sort-icon" ng-show="sortKey=='position'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th data-ng-click="sort('jobType')">Job Type
+				<span class="glyphicon sort-icon" ng-show="sortKey=='jobType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th data-ng-click="sort('country')">Country
+				<span class="glyphicon sort-icon" ng-show="sortKey=='country'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th data-ng-click="sort('city')">City
+				<span class="glyphicon sort-icon" ng-show="sortKey=='city'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+			</th>
+			<th></th>
+		</tr>
+		<tr dir-paginate="offer in offers|orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
+			<td><img src="{{offer.company.image}}" style="margin-right:5px"/>{{offer.company.companyUser.companyName}}</td>
+			<td>{{offer.position}}</td>
+			<td>{{offer.jobType}}</td>
+			<td>{{offer.country}}</td>
+			<td>{{offer.city}}</td>
+			<td><a href="/#!/user/offer/{{offer._id}}" class="btn btn-info">Details</a></td>
+		</tr>
+	</table>
+	<dir-pagination-controls max-size="10"  direction-links="true" boundary-links="true"></dir-pagination-controls>
+</section>

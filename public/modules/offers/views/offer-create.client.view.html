@@ -1,0 +1,51 @@
+<section data-ng-controller="OffersCompanyController">
+	<h3 class="col-md-12 text-center">Create an offer</h3>
+		<form name="offerForm" data-ng-submit="submitOffer()" class="form-horizontal" autocomplete="off">
+			<fieldset class="col-md-offset-5 col-md-2">
+				<div class="form-group">
+					<label for="refNo">Ref No.</label>
+					<input type="text" required id="refNo" name="refNo" class="form-control" data-ng-model="offer.refNo" placeholder="Ref No.">
+				</div>
+				<div class="form-group">
+					<label for="position">Position</label>
+					<input type="text" required id="position" name="position" class="form-control" data-ng-model="offer.position" placeholder="Position">
+				</div>
+				<div class="form-group">
+					<label>Job Type:</label><br>
+					<label class="radio" data-ng-repeat="type in ['Team lead', 'Manager', 'Senior developer', 'Developer', 'Junior Developer', 'Trainee']">
+						<input type="radio" name="jobType" data-ng-model="offer.jobType" value="{{type}}">{{type}}<br>
+					</label>
+				</div>
+				<div class="form-group">
+					<label>Work time:</label><br>
+					<label class="radio" data-ng-repeat="type in ['Full-time', 'Part-time']">
+						<input type="radio" name="workTime" data-ng-model="offer.workTime" value="{{type}}">{{type}}<br>
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="country">Country</label>
+					<input type="text" required id="country" name="country" class="form-control" data-ng-model="offer.country" placeholder="Country">
+				</div>
+				<div class="form-group">
+					<label for="city">City</label>
+					<input type="text" required id="city" name="city" class="form-control" data-ng-model="offer.city" placeholder="City">
+				</div>
+				<div class="form-group">
+					<label for="payment">Payment</label>
+					<input type="text" required id="payment" name="payment" class="form-control" data-ng-model="offer.payment" placeholder="Payment">
+				</div>
+			</fieldset>
+			<div class="form-group col-md-12">
+				<label class="col-md-offset-5" for="description">Description</label>
+				<textarea ui-tinymce required id="description" name="description" class="form-control" data-ng-model="offer.description" placeholder="Description" rows="25"></textarea>
+			</div>
+			<div class="col-md-2 col-md-offset-5">
+				<div class="text-center form-group">
+					<button type="submit" class="btn btn-lg btn-primary">Submit</button>
+				</div>
+				<div data-ng-show="error" class="text-center text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+			</div>
+		</form>
+</section>
