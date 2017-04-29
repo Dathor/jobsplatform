@@ -111,9 +111,25 @@ exports.list = function(req, res) {
 };
 
 /**
- * Get all offers and the name and logo of the company which posted them
+ * Splits all of the offers into pages
  */
+exports.pagedRead = function(req, res){
+    var page = req.params.page;
+    var perPage = 10;
+    Offer.find({}).skip((page-1)*10).limit(perPage).populate('company', 'companyUser.companyName image').exec(function(err,offers){
+        if(err){
+            return res.status(400).send({
+                message:errorHandler.getErrorMessage(err)
+            });
+        } else{
+            res.send(offers);
+        }
+    });
+};
+
 exports.all = function(req, res){
+    var page = req.params.page;
+    var perPage = 10;
     Offer.find({}).populate('company', 'companyUser.companyName image').exec(function(err,offers){
         if(err){
             return res.status(400).send({
@@ -137,6 +153,22 @@ exports.offerDetails = function(req, res){
             });
         } else{
             res.send(offer);
+        }
+    })
+};
+
+/**
+ * Counts all of the offers
+ */
+
+exports.count = function(req,res){
+    Offer.count(function(err,count){
+        if(err){
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else{
+            res.send({count: count});
         }
     })
 };

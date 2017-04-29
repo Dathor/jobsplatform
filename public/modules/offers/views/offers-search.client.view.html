@@ -1,5 +1,5 @@
-<section data-ng-controller="OffersUserController">
-	<form class="form-inline">
+<section data-ng-controller="OffersUserController" data-ng-init="changePage(1)">
+	<form class="form-inline"  data-ng-submit="searchOffers()">
 		<div class="form-group col-md-offset-5">
 			<label for="search">Search</label>
 			<input type="text" id="search" data-ng-model="search" class="form-control" placeholder="Search"> 
@@ -26,7 +26,7 @@
 			<th></th>
 		</tr>
 		<tr dir-paginate="offer in offers|orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
-			<td><img src="{{offer.company.image}}" style="margin-right:5px"/>{{offer.company.companyUser.companyName}}</td>
+			<td><img src="{{offer.company.image.src}}" width="{{offer.company.image.width}}" height="{{offer.company.image.height}}" style="margin-right:5px"/>{{offer.company.companyUser.companyName}}</td>
 			<td>{{offer.position}}</td>
 			<td>{{offer.jobType}}</td>
 			<td>{{offer.country}}</td>
@@ -34,5 +34,5 @@
 			<td><a data-ng-click="offerDetails(offer)" class="btn btn-info">Details</a></td>
 		</tr>
 	</table>
-	<dir-pagination-controls max-size="10"  direction-links="true" boundary-links="true"></dir-pagination-controls>
+	<dir-pagination-controls  direction-links="true" boundary-links="true"></dir-pagination-controls>
 </section>

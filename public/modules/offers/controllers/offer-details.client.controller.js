@@ -8,6 +8,7 @@ angular.module('offers').controller('OfferDetailsController', ['$scope', '$http'
 		if(!$scope.authentication.user || $scope.authentication.user.roles[0] !== 'user') $location.path('/');
 
 		$scope.offer = {};
+		$scope.image = null;
 		$http.get('/offer/details/' + $stateParams.token).success(function(response){
 			$scope.offer = response;
 		}).error(function(response){

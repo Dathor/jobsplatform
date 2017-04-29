@@ -9,6 +9,17 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 			$scope.isCollapsed = !$scope.isCollapsed;
 		};
 
+		$scope.image = null;
+
+		if($scope.authentication.user.image){
+			$scope.image = new Image();
+			$scope.image.src = $scope.authentication.user.image;
+			$scope.image.height = $scope.image.height/5;
+			$scope.image.width = $scope.image.width/5;
+			$scope.authentication.user.image = $scope.image;
+		}
+
+
 		// Collapsing the menu after navigation
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;

@@ -14,7 +14,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			Jimp.read(url)
 			.then(function (item) {
 				if($scope.user.roles[0]==='company'){
-					item.resize(28, Jimp.AUTO)
+					item.resize(Jimp.AUTO, 100)
 					.getBase64(file.type, function (err, newBase64) {
 						if (err) {throw err;}
 						var bytes = Math.round((3/4)*newBase64.length);

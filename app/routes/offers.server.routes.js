@@ -10,6 +10,8 @@ module.exports = function(app) {
 	app.route('/offers/delete:offerId').delete(offers.delete);
 	app.route('/offers::token').get(offers.read);
 	app.route('/offers/update:token').put(offers.update);
-	app.route('/offers/search').get(offers.all);
+	//app.route('/offers/search/page=:page').get(offers.pagedRead);
 	app.route('/offer/details/:token').get(offers.offerDetails);
+	app.route('/offers/count').get(offers.count);
+	app.route('/offers/search').get(offers.all);
 };
